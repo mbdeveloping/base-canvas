@@ -8,14 +8,6 @@ export default class Actor {
         this.position = new Vector2D(0, 0),
         this.velocity = new Vector2D(),
         this.jumpDistance = 25;
-        this.isOnGround = false,
-        this.collide = {
-            active: false,
-            top: false,
-            bottom: false,
-            left: false,
-            right: false
-        },
         this.speed = 5
     }
 

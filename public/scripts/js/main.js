@@ -112,13 +112,7 @@ function () {
     _classCallCheck(this, Actor);
 
     this.height = 100, this.width = 50, this.color = 'black', this.position = new _Vector__WEBPACK_IMPORTED_MODULE_0__["default"](0, 0), this.velocity = new _Vector__WEBPACK_IMPORTED_MODULE_0__["default"](), this.jumpDistance = 25;
-    this.isOnGround = false, this.collide = {
-      active: false,
-      top: false,
-      bottom: false,
-      left: false,
-      right: false
-    }, this.speed = 5;
+    this.speed = 5;
   }
 
   _createClass(Actor, [{
@@ -576,72 +570,10 @@ function () {
     _classCallCheck(this, World);
 
     this.debug = debug, this.width = width, this.height = height, this.position = new _Vector__WEBPACK_IMPORTED_MODULE_0__["default"](0, 0), this.canvasWidth = canvasWidth, this.canvasHeight = canvasHeight, this.gravity = 1, this.player = new _Player__WEBPACK_IMPORTED_MODULE_1__["default"](), this.actors = [], this.enemies = [];
-  }
+  } //temp
+
 
   _createClass(World, [{
-    key: "getInsersectingPlatforms",
-    value: function getInsersectingPlatforms(actor) {
-      var _this = this;
-
-      var intersectingPlatforms = this.platforms.filter(function (platform) {
-        if (_this.objectCollide(actor, platform)) {
-          return true;
-        }
-      });
-      return intersectingPlatforms;
-    }
-  }, {
-    key: "actorWorldCollision",
-    value: function actorWorldCollision(actor) {
-      var _this2 = this;
-
-      var inresectingPlatforms = this.getInsersectingPlatforms(actor);
-
-      if (inresectingPlatforms.length > 0) {
-        actor.collide.active = true;
-      } else {
-        actor.collide.active = false;
-      }
-
-      inresectingPlatforms.forEach(function (platform, i) {
-        if (_this2.objectCollide(actor, platform)) {
-          //top
-          if (actor.top < platform.bottom && actor.top > platform.top && actor.left < platform.right && actor.right > platform.left) {
-            actor.velocity.setY(0);
-            actor.position.setY(platform.bottom); // console.log('top')
-          } //bottom
-
-
-          if (actor.bottom >= platform.top && actor.bottom < platform.top + actor.velocity.getY) {
-            actor.collide.bottom = true;
-            actor.isOnGround = true;
-            actor.position.setY(platform.top - actor.height); // console.log('bottom');
-          } //left
-
-
-          if (actor.left < platform.right && actor.right > platform.right && actor.bottom > platform.top && actor.top < platform.bottom) {
-            actor.collide.left = true;
-            actor.velocity.setX(0);
-            actor.position.setX(platform.right + 1);
-            console.log('left');
-          } else {
-            actor.collide.left = false;
-          } //right
-
-
-          if (actor.right > platform.left && actor.left < platform.left && actor.bottom > platform.top && actor.top < platform.bottom) {
-            console.log('right');
-            actor.collide.right = true;
-            actor.velocity.setX(0);
-            actor.position.setX(platform.left - actor.width - 1);
-          } else {
-            actor.collide.right = false;
-          }
-        }
-      });
-    } //temp
-
-  }, {
     key: "createSky",
     value: function createSky(ctx) {
       ctx.fillStyle = 'skyblue';
@@ -680,16 +612,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "controller", function() { return controller; });
 /* harmony import */ var _sass_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../sass/style.scss */ "./src/sass/style.scss");
 /* harmony import */ var _sass_style_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_sass_style_scss__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Controller__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Controller */ "./src/es/Controller.js");
-/* harmony import */ var _Game__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Game */ "./src/es/Game.js");
-/* harmony import */ var _Engine__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Engine */ "./src/es/Engine.js");
+/* harmony import */ var _Controller__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Controller */ "./src/es/Controller.js");
+/* harmony import */ var _Game__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Game */ "./src/es/Game.js");
+/* harmony import */ var _Engine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Engine */ "./src/es/Engine.js");
 
 
 
 
-var controller = new _Controller__WEBPACK_IMPORTED_MODULE_4__["default"]();
-var game = new _Game__WEBPACK_IMPORTED_MODULE_3__["default"]();
-var engine = new _Engine__WEBPACK_IMPORTED_MODULE_2__["default"](game);
+var controller = new _Controller__WEBPACK_IMPORTED_MODULE_1__["default"]();
+var game = new _Game__WEBPACK_IMPORTED_MODULE_2__["default"]();
+var engine = new _Engine__WEBPACK_IMPORTED_MODULE_3__["default"](game);
 game.init();
 engine.start();
 window.addEventListener('keydown', function (event) {
